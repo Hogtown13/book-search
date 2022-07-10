@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
 
 // Using getters and setters from apollo
@@ -14,7 +14,7 @@ const SavedBooks = () => {
   // use this to determine if `useEffect()` hook needs to run again
 
   const { loading, data } = useQuery(GET_ME);
-  const [removeBook, { error }] = useMutation(REMOVE_BOOK);
+  const [removeBook] = useMutation(REMOVE_BOOK);
   const userData = data?.me || {};
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
@@ -23,6 +23,7 @@ const SavedBooks = () => {
 
     if (!token) {
       return false;
+      
     }
 
     try {
